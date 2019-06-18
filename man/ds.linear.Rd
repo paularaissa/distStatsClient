@@ -76,14 +76,14 @@ lm <- ds.linear('D$maternal_age~D$birth_weight')
 }
 }
 \references{
-\insertRef{walpole1993probability}{distStats}
+\insertRef{walpole1993probability}{distStatsClient}
 }
 \seealso{
 Other regressions: \code{\link{ds.logistic}},
-  \code{\link{ds.poisson}}
+  \code{\link{ds.poisson}}, \code{\link{getDerivative}}
 
 Other regressions: \code{\link{ds.logistic}},
-  \code{\link{ds.poisson}}
+  \code{\link{ds.poisson}}, \code{\link{getDerivative}}
 }
 \author{
 Paula Raissa Costa e Silva

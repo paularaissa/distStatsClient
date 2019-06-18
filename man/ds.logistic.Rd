@@ -49,7 +49,7 @@ ds.logistic('menarche ~ D$age')
 }
 \seealso{
 Other regressions: \code{\link{ds.linear}},
-  \code{\link{ds.poisson}}
+  \code{\link{ds.poisson}}, \code{\link{getDerivative}}
 }
 \author{
 Paula Raissa Costa e Silva

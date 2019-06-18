@@ -50,7 +50,7 @@ ds.poisson('D$y ~ D$x')
 }
 \seealso{
 Other regressions: \code{\link{ds.linear}},
-  \code{\link{ds.logistic}}
+  \code{\link{ds.logistic}}, \code{\link{getDerivative}}
 }
 \author{
 Paula Raissa Costa e Silva

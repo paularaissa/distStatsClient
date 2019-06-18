@@ -52,7 +52,7 @@
 #'
 #' @author Paula Raissa Costa e Silva
 #' @references
-#' \insertRef{walpole1993probability}{distStats}
+#' \insertRef{walpole1993probability}{distStatsClient}
 #' @export
 #' @family regressions
 #' @examples {

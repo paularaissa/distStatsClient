@@ -26,9 +26,8 @@ ds.skewness <- function(x=NULL, datasources=NULL) {
     datasources <- findLoginObjects()
   }
 
-
-  mean <- ds.arMean(x, type, datasources)
-  size <- ds.length(x, type, datasources)
+  mean <- ds.arMean(x, datasources)
+  size <- ds.length(x, datasources)
   result <- list()
 
   xnames <- extract(x)
