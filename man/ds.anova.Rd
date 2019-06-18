@@ -51,7 +51,7 @@ The model is considered to be statistically significant if it can account for a 
 }
 \section{Dependencies}{
 
-\code{\link{modelCheckingDS}}
+\code{\link{getAnova}}
 }
 
 \author{

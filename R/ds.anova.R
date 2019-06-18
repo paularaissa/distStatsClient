@@ -30,7 +30,7 @@
 #'         \item{Pr(>F)}{p-value from f-statistic}
 #' @author Paula Raissa Costa e Silva
 #' @section Dependencies:
-#' \code{\link{modelCheckingDS}}
+#' \code{\link{getAnova}}
 #' @export
 
 ds.anova <- function(formula=NULL, model, weights=NULL, learningrate=0.01, dif=0.000000001, checks=FALSE, datasources=NULL) {
@@ -64,12 +64,11 @@ ds.anova <- function(formula=NULL, model, weights=NULL, learningrate=0.01, dif=0
   beta.vect.temp <- paste0(as.character(beta.reg$coefficients), collapse="x")
 
   #Residuals
-  media.y <- ds.arMean(variables[[1]], type)
+  media.y <- ds.arMean(variables[[1]])
   #media_y <- beta.reg$sum.y / beta.reg$n.rows
   media.y.temp <- paste0(as.character(media.y))
 
-  #Nova chamada para modelCheckingsDS - 11/04
-  cally2 <- call('modelCheckingDS', beta.vect.temp, beta.reg$call, media.y.temp)
+  cally2 <- call('getAnova', beta.vect.temp, beta.reg$call, media.y.temp)
   result <- opal::datashield.aggregate(datasources, cally2)
 
   n <- 0

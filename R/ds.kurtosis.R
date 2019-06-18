@@ -24,13 +24,14 @@ ds.kurtosis <- function(x=NULL, datasources=NULL) {
     stop("Please provide the name of the input vector!", call. = FALSE)
   }
 
+  if(is.null(datasources)){
+    datasources <- findLoginObjects()
+  }
+
   mean <- ds.arMean(x, datasources)
   size <- ds.length(x, datasources)
   result <- list()
 
-  if(is.null(datasources)){
-    datasources <- findLoginObjects()
-  }
   xnames <- extract(x)
   varname <- xnames$elements
   obj2lookfor <- xnames$holders
