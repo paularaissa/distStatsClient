@@ -1,0 +1,13 @@
+Package: distStatsClient
+Maintainer: <paula.r.silva@inesctec.pt>
+Author: <rcamacho@fe.up.pt>, <paula.r.silva@inesctec.pt>
+Version: 1.0.0
+License: GPL-3
+Title: Distributed Multiple Imputations
+Description: Package for distributed multiple imputations for DataSHIELD.
+Imports: Rdpack
+RdMacros: Rdpack
+Depends: opal
+Roxygen: list(markdown = TRUE)
+Options: datashield.privacyLevel=5
+RoxygenNote: 6.1.1

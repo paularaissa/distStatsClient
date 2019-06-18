@@ -1,0 +1,67 @@
+#-------------------------------------- HEADER --------------------------------------------#
+#' @title Linear Regression
+#' @description Computes linear models. It can be used to fit univariate, multivariate and weighted linear models.
+#' It also can be used to compute single stratum analysis of variance and analysis of covariance.
+#' @details Models for ds.linear are specified symbolically.
+#' A typical model has the form response "~" terms where response is a numeric vector and the terms is a series of terms which
+#' specifies a linear predictor for response.
+#' A terms specification of the form first + second indicates all the terms in first together with all the terms in second with
+#' duplicates removed.
+#' A specification of the form first:second indicates the set of terms obtained by taking the interactions of all terms in
+#' first with all terms in second. The specification first*second indicates the cross of first and second.
+#'
+#' Non-NULL weights can be used to indicate that each independent variable have different variances.
+#'
+#' In the case of distributed univariate and multivariate linear regression, the coefficients are
+#' computed by least squares using the \emph{the method of matrices}.
+#' Mathematically, the method of matrices has the same approach than the other methods, but the data is transformed
+#' into matrices \emph{A} and \emph{g}.
+#'
+#' According to \insertCite{walpole1993probability}{distStatsS}, the method of matrices consists in build the
+#' matrix \emph{A}, the matrix \emph{g} and calculate the coefficients by the equation \eqn{b={A}^{-1}g}.
+#' In distributed environments without data sharing the solution is compute the matrices
+#' \emph{A} and \emph{g} for each data node, and return these results to the central node.
+#' The central node combines $A$ and $g$, and compute the regression coefficients by the equation \eqn{b={A}^{-1}g}.
+#'
+#' ds.linear calls the server side function \code{\link{matrixMethod2DS}}, to compute the matrices
+#' \emph{A} and \emph{g}.
+#' @param formula a character that can be coerced to an object of class \code{\link[stats]{formula}}. It is a symbolic
+#' description of the model to be fitted.
+#' The details about the model specification are given under 'Details' section.
+#' @param datasources a list of opal object(s) obtained after login in to opal servers;
+#' these objects hold also the data assign to R, as \code{data frame}, from opal datasources.
+#' @return Returns a list with the following components:
+#'         \item{call}{the model formula.}
+#'         \item{coefficients}{a vector of linear regression coefficients.}
+#'         \item{n.rows}{numerical, the sample size.}
+#'         \item{sum.y}{numerical, the sum of elements for a given dependent variable \emph{y}.}
+#'         \item{sum.xtx}{matrix, the combined A matrix.}
+#'@export
+#' @author Paula Raissa Costa e Silva
+
+
+ds.impute <- function(coef.table=NULL, coef.frm=NULL, datasources=NULL) {
+
+  if (is.null(datasources))
+    datasources <- findLoginObjects()
+
+  beta.reg <- coef.table$Estimate
+
+  #Data transformations
+  #beta.vect.temp <- paste0(as.character(beta.reg), collapse="x")
+
+  cally <- call('fittedDS', 'betareg')
+  result <- opal::datashield.aggregate(datasources, cally)
+
+  return(result)
+
+  # yhat <- matrix()
+  # for (fitted in result) {
+  #   yhat <- rbind(yhat, fitted)
+  # }
+  #
+  # return(yhat)
+  #
+  # return(list(coef.table, coef.frm))
+  #estimate <- getEstimate(coefficients,datasources) #vector of estimates
+}
