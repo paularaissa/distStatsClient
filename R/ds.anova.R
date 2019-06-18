@@ -70,7 +70,7 @@ ds.anova <- function(formula=NULL, model, weights=NULL, learningrate=0.01, dif=0
 
   cally2 <- call('getAnova', beta.vect.temp, beta.reg$call, media.y.temp)
   result <- opal::datashield.aggregate(datasources, cally2)
-
+  
   n <- 0
   lbx <- 0
   residuals <- matrix()
